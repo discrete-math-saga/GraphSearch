@@ -3,7 +3,7 @@ from search import isConnected
 from drawGraph import drawGraph
 
 def defineGraph() -> tuple[nx.DiGraph, dict[str, tuple[float, float]], dict[tuple[str,str], str]]:# -> tuple[DiGraph, dict[str, tuple[float, float]], dict[Any, Any]]:
-    nodeList=list()
+    nodeList:list[str]=list()
     for i in range(10):
         v = "v"+str(i)
         nodeList.append(v)

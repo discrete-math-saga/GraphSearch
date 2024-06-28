@@ -14,7 +14,7 @@ def defineGraph()->tuple[nx.DiGraph,dict[str,tuple[float,float]],dict[tuple[str,
     nodeLocations 頂点の一覧
     edgeLabels 辺のラベル
     """
-    nodeList=list()
+    nodeList:list[str]=list()
     for i in range(10):
 
         nodeList.append(f'v{i}')

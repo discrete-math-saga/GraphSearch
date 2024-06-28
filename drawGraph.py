@@ -15,29 +15,27 @@ def drawGraph(G:nx.Graph,nodeLocations:dict[str,tuple[float,float]],
     edgeLabels: the dictionary of edges vs edge labels
     A: the list of result edges by searching
     """
-    plt.figure(facecolor='white')
+    fig,ax = plt.subplots(2,1,facecolor='white')
     # drawing the target graph
-    plt.subplot(2, 1, 1)
     nx.draw_networkx_nodes(G, nodeLocations, 
-                           node_size = node_size, node_color = node_color)
-    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size)
+                           node_size = node_size, node_color = node_color,ax=ax[0])
+    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size,ax=ax[0])
     nx.draw_networkx_edges(G, nodeLocations, width = edge_width, 
                            arrows = True, arrowsize = arrowsize, 
-                           node_size = node_size)
+                           node_size = node_size,ax=ax[0])
     nx.draw_networkx_edge_labels(G, nodeLocations, 
                                  edge_labels = edgeLabels, 
-                                 font_size = font_size)
-    plt.axis('off')
+                                 font_size = font_size,ax=ax[0])
+    ax[0].axis('off')
     # drawing the result tree
-    plt.subplot(2,1,2)
     nx.draw_networkx_nodes(G, nodeLocations, 
-                           node_size = node_size, node_color = node_color)
-    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size)
+                           node_size = node_size, node_color = node_color,ax=ax[1])
+    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size,ax=ax[1])
     nx.draw_networkx_edges(G, nodeLocations, A, width = edge_width, 
                            edge_color = 'r', arrows = True, 
-                           arrowsize = arrowsize, node_size = node_size)
+                           arrowsize = arrowsize, node_size = node_size,ax=ax[1])
     
-    plt.axis('off')
+    ax[1].axis('off')
     plt.show()
 
 def pltInit():

@@ -7,7 +7,7 @@ from search import BFS
 from drawGraph import drawGraph
 
 def defineGraph():
-    nodeList=list()
+    nodeList:list[str]=list()
     for i in range(11):
         v = "v"+str(i)
         nodeList.append(v)
