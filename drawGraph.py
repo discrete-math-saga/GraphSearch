@@ -1,7 +1,12 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from typing import NamedTuple
 
-def drawGraph(G:nx.Graph,nodeLocations:dict[str,tuple[float,float]],
+class Point(NamedTuple):
+    x:float
+    y:float
+
+def drawGraph(G:nx.Graph,nodeLocations:dict[str,Point],
               edgeLabels:dict[tuple[str,str],str],A:list[tuple[str,str]],
               font_size = 10, node_size = 300, edge_width = 1.,
               arrowsize = 10, node_color = "c"):
