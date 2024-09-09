@@ -9,7 +9,7 @@ class Point(NamedTuple):
 def drawGraph(G:nx.Graph,nodeLocations:dict[str,Point],
               edgeLabels:dict[tuple[str,str],str],A:list[tuple[str,str]],
               font_size = 10, node_size = 300, edge_width = 1.,
-              arrowsize = 10, node_color = "c"):
+              arrow_size = 10, node_color = "c"):
     """
     Drawing the target graph and the result tree by searching
 
@@ -21,25 +21,16 @@ def drawGraph(G:nx.Graph,nodeLocations:dict[str,Point],
     A: the list of result edges by searching
     """
     fig,ax = plt.subplots(2,1,facecolor='white')
-    # drawing the target graph
-    nx.draw_networkx_nodes(G, nodeLocations, 
-                           node_size = node_size, node_color = node_color,ax=ax[0])
-    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size,ax=ax[0])
-    nx.draw_networkx_edges(G, nodeLocations, width = edge_width, 
-                           arrows = True, arrowsize = arrowsize, 
-                           node_size = node_size,ax=ax[0])
+
+    nx.draw(G, nodeLocations, with_labels=True, node_size = node_size, node_color = node_color,
+            width=edge_width,arrowsize=arrow_size,ax=ax[0])
     nx.draw_networkx_edge_labels(G, nodeLocations, 
                                  edge_labels = edgeLabels, 
                                  font_size = font_size,ax=ax[0])
     ax[0].axis('off')
-    # drawing the result tree
-    nx.draw_networkx_nodes(G, nodeLocations, 
-                           node_size = node_size, node_color = node_color,ax=ax[1])
-    nx.draw_networkx_labels(G, nodeLocations, font_size = font_size,ax=ax[1])
-    nx.draw_networkx_edges(G, nodeLocations, A, width = edge_width, 
-                           edge_color = 'r', arrows = True, 
-                           arrowsize = arrowsize, node_size = node_size,ax=ax[1])
-    
+
+    nx.draw(G, nodeLocations, edgelist=A,with_labels=True, node_size = node_size, node_color = node_color,edge_color='r',
+            width=edge_width,arrowsize=arrow_size,ax=ax[1])    
     ax[1].axis('off')
     plt.show()
 
